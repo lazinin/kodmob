@@ -52,3 +52,21 @@ while True:
         print("Ошибка: Введите корректное число.")
         continue
     
+    while True:
+        continue_choice = input("\nХотите продолжить? (да/нет): ").strip().lower()
+        if continue_choice in ['да', 'нет', 'yes', 'no', 'y', 'n']:
+            break
+        print("Пожалуйста, введите 'да' или 'нет'")
+    
+    if continue_choice in ['нет', 'no', 'n']:
+        break
+
+print("\n" + "="*40)
+print("ИСТОРИЯ ВЫЧИСЛЕНИЙ".center(40))
+print("="*40)
+
+if history:
+    for entry in history:
+        print(entry)
+else:
+    print("История пуста")
