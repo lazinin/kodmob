@@ -1,65 +1,69 @@
+gitHub = "https://github.com/lazinin/kodmob"
+
 history = []
 
 while True:
     print("\n" + "="*40)
     print("КОНСОЛЬНЫЙ КАЛЬКУЛЯТОР".center(40))
     print("="*40)
+    print("\nМЕНЮ:")
+    print("1. Выполнить вычисление")
+    print("2. Показать историю")
+    print("3. Выйти")
     
-    try:
-        num1 = float(input("Введите первое число: "))
-        
-        print("Доступные операции: +, -, *, /")
-        operation = input("Выберите операцию: ").strip()
-        
-        if operation not in ['+', '-', '*', '/']:
-            print("Ошибка: Некорректная операция. Используйте +, -, *, /")
-            continue
-        
-        num2 = float(input("Введите второе число: "))
-        
-        if operation == '+':
-            result = num1 + num2
-            operation_str = "+"
-        elif operation == '-':
-            result = num1 - num2
-            operation_str = "-"
-        elif operation == '*':
-            result = num1 * num2
-            operation_str = "*"
-        elif operation == '/':
-            if num2 == 0:
-                print("Ошибка: Деление на ноль.")
-                continue
-            result = num1 / num2
-            operation_str = "/"
-        
-        if result == int(result):
-            result_display = int(result)
-            result_store = int(result)
-        else:
-            result_display = result
-            result_store = result
-        
-        num1_display = int(num1) if num1 == int(num1) else num1
-        num2_display = int(num2) if num2 == int(num2) else num2
-        
-        print(f"\nРезультат: {result_display}")
-        
-        history_entry = f"{num1_display} {operation_str} {num2_display} = {result_store}"
-        history.append(history_entry)
-        
-    except ValueError:
-        print("Ошибка: Введите корректное число.")
-        continue
+    choice = input("\nВыберите действие (1-3): ").strip()
     
-    while True:
-        continue_choice = input("\nХотите продолжить? (да/нет): ").strip().lower()
-        if continue_choice in ['да', 'нет', 'yes', 'no', 'y', 'n']:
-            break
-        print("Пожалуйста, введите 'да' или 'нет'")
-    
-    if continue_choice in ['нет', 'no', 'n']:
+    if choice == '3':
         break
+    elif choice == '2':
+        print("\n" + "="*40)
+        print("ИСТОРИЯ ВЫЧИСЛЕНИЙ".center(40))
+        print("="*40)
+        if history:
+            for entry in history:
+                print(entry)
+        else:
+            print("История пуста")
+        continue
+    elif choice == '1':
+        try:
+            num1 = float(input("Введите первое число: "))
+            
+            print("Доступные операции: +, -, *, /")
+            operation = input("Выберите операцию: ").strip()
+            
+            if operation not in ['+', '-', '*', '/']:
+                print("Ошибка: Некорректная операция. Используйте +, -, *, /")
+                continue
+            
+            num2 = float(input("Введите второе число: "))
+            
+            if operation == '+':
+                result = num1 + num2
+                operation_str = "+"
+            elif operation == '-':
+                result = num1 - num2
+                operation_str = "-"
+            elif operation == '*':
+                result = num1 * num2
+                operation_str = "*"
+            elif operation == '/':
+                if num2 == 0:
+                    print("Ошибка: Деление на ноль.")
+                    continue
+                result = num1 / num2
+                operation_str = "/"
+            
+            print(f"\nРезультат: {result:.1f}")
+            
+            history_entry = f"{num1:.1f} {operation_str} {num2:.1f} = {result:.1f}"
+            history.append(history_entry)
+            
+        except ValueError:
+            print("Ошибка: Введите корректное число.")
+            continue
+    else:
+        print("Ошибка: Выберите 1, 2 или 3")
 
 print("\n" + "="*40)
 print("ИСТОРИЯ ВЫЧИСЛЕНИЙ".center(40))
